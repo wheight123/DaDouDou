@@ -8,13 +8,14 @@
     mc:Ignorable="d">
     <!--
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-
     </Grid>
      -->
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="Assets/background/background1.jpg" />
         </Grid.Background>
-        
+        <Button Name="StartGame" Content="开始游戏" HorizontalAlignment="Left" Margin="654,418,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.036,0.401" Click="StartGame_Click"/>
+        <Image HorizontalAlignment="Left" Height="208" Margin="572,500,0,0" VerticalAlignment="Top" Width="257" Source="Assets/main_page/main_page_rule.png"/>
+        <Image HorizontalAlignment="Left" Height="181" Margin="513,191,0,0" VerticalAlignment="Top" Width="387" Source="Assets/main_page/main_page_logo.png"/>
     </Grid>
 </Page>

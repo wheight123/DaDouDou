@@ -34,5 +34,10 @@ namespace DaDouDou
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+        private void StartGame_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GamePanel));
+        }
     }
 }
