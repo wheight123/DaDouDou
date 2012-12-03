@@ -123,6 +123,8 @@
   <ItemGroup>
     <Content Include="Assets\background\background1.jpg" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\main_page\main_page_logo.png" />
+    <Content Include="Assets\main_page\main_page_rule.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
