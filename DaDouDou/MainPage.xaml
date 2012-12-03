@@ -6,8 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <!--
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
 
+    </Grid>
+     -->
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/background/background1.jpg" />
+        </Grid.Background>
+        
     </Grid>
 </Page>
