@@ -15,5 +15,9 @@
             <ImageBrush ImageSource="Assets/background/background1.jpg" />
         </Grid.Background>
         <Button Name="BackHome" Content="返回首页" HorizontalAlignment="Left" Margin="31,696,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.225,0.473" Click="BackHome_Click" />
+        <Image Name="purple" HorizontalAlignment="Left" Height="45" Margin="373,491,0,0" VerticalAlignment="Top" Width="52" Source="Assets/game_page/purple_bean.png"/>
+        <Image Name="green" HorizontalAlignment="Left" Height="45" Margin="485,491,0,0" VerticalAlignment="Top" Width="51" Source="Assets/game_page/green_bean.png" PointerEntered="Image_PointerEntered_1" PointerExited="Image_PointerExited_1" Tapped="green_Tapped_1"/>
+        <Image Name="blue" HorizontalAlignment="Left" Height="45" Margin="588,491,0,0" VerticalAlignment="Top" Width="51" Source="Assets/game_page/blue_bean.png"/>
+        <Image Name="red" HorizontalAlignment="Left" Height="47" Margin="485,570,0,0" VerticalAlignment="Top" Width="47" Source="Assets/game_page/red_bean.png"/>
     </Grid>
 </Page>

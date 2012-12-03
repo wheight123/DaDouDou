@@ -122,9 +122,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\background\background1.jpg" />
+    <Content Include="Assets\game_page\blue_bean.png" />
+    <Content Include="Assets\game_page\red_bean.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\game_page\green_bean.png" />
     <Content Include="Assets\main_page\main_page_logo.png" />
     <Content Include="Assets\main_page\main_page_rule.png" />
+    <Content Include="Assets\game_page\purple_bean.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
