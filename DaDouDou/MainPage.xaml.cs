@@ -39,5 +39,18 @@ namespace DaDouDou
         {
              this.Frame.Navigate(typeof(GamePanel));
         }
+
+        private void start_game_PointerEntered_1(object sender, PointerRoutedEventArgs e)
+        {
+            Image image = (Image)sender;
+            Thickness myThickness = new Thickness(5, 105, 0, 0);
+            image.Margin = myThickness;
+        }
+        private void start_game_PointerExited_1(object sender, PointerRoutedEventArgs e)
+        {
+            Image image = (Image)sender;
+            Thickness myThickness = new Thickness(0, 100, 0, 0);
+            image.Margin = myThickness;
+        }
     }
 }

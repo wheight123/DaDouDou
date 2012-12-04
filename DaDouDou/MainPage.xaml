@@ -16,6 +16,6 @@
         </Grid.Background>
         <Image HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" Height="480" Width="800" Source="Assets/main_page/main_page_logo.png"/>
         <Image Name="start_game" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,100,0,0" Height="100" Width="337" Source="Assets/main_page/start_game.png"
-               Canvas.ZIndex="1" Tapped="start_game_Tapped_1"/>
+               Canvas.ZIndex="1" Tapped="start_game_Tapped_1" PointerEntered="start_game_PointerEntered_1" PointerExited="start_game_PointerExited_1"/>
     </Grid>
 </Page>
