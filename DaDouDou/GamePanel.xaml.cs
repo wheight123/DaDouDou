@@ -90,8 +90,40 @@ namespace DaDouDou
         // bgImage block be tapped
         private void bgImage_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            result.Text = "";
             Image image = (Image)sender;
-            image.Source = pathPoint.Source;
+            String name = image.Name;
+            String[] array = name.Split(new Char[] { '_' });
+            int i = Int32.Parse(array[1]);
+            int j = Int32.Parse(array[2]);
+            List<Point> resultPointList = game.findPointList(i, j);
+            if (resultPointList.Count > 0)
+            {
+                foreach (Point point in resultPointList)
+                {
+                    result.Text = result.Text + "(" + point.X + "," + point.Y + ");";
+                }
+                clearBeans(resultPointList);
+            }
+            else
+            {
+                result.Text = "not found";
+            }
+        }
+        private void clearBeans(List<Point> pointList)
+        {
+            game.clearBeansValue(pointList);
+            clearBeanInGamePanel(pointList);
+        }
+        private void clearBeanInGamePanel(List<Point> pointList)
+        {
+            foreach (Point point in pointList)
+            {
+                int x = (int)point.X;
+                int y = (int)point.Y;
+                Image image = gamePanelBeanMatrix[x, y];
+                gameCanvas.Children.Remove(image);
+            }
         }
         // point move across bgImage block
         private void bgImage_PointerMoved(object sender, PointerRoutedEventArgs e)
@@ -156,6 +188,7 @@ namespace DaDouDou
                 }
             }
         }
+        // set bean image source
         private void setBeanImageSource(Image image, int type)
         {
             switch(type) 
@@ -193,13 +226,13 @@ namespace DaDouDou
             }
         }
         
-
+        // backHome click function
         private void backHome_Click_1(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        // restart click
+        // restart click function
         private void restart_Click(object sender, RoutedEventArgs e)
         {
             // clear game panel beans
