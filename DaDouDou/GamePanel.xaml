@@ -41,8 +41,10 @@
         <Image Name="block1" Height="32" Width="32" Canvas.Left="33" Canvas.Top="0"  Source="Assets/game_page/block/gray1.png" Visibility="Collapsed"/>
         <Image Name="block2" Height="32" Width="32" Canvas.Left="33" Canvas.Top="33"  Source="Assets/game_page/block/gray2.png" Visibility="Collapsed"/>
         <Image Name="block3" Height="32" Width="32" Canvas.Left="33" Canvas.Top="65"  Source="Assets/game_page/block/gray3.png" Visibility="Collapsed"/>
-        <Image Name="path_point" Height="32" Width="32" Canvas.Left="65" Canvas.Top="0"  Source="Assets/game_page/path_point.png" Visibility="Collapsed"/>
-        
+        <Image Name="pathPoint" Height="32" Width="32" Canvas.Left="65" Canvas.Top="0"  Source="Assets/game_page/path_point.png" Visibility="Collapsed"/>
+        <!-- user control -->
         <Button Name="backHome" Content="返回首页" Canvas.Left="116" Canvas.Top="669" Foreground="Red" Height="48" Width="123" Click="backHome_Click_1"/>
+        <Slider Name="timeSlider" Canvas.Left="239" Canvas.Top="37" Width="339" Height="43" Foreground="#FFFB0909" Value="200" Maximum="200" />
+        <Button Name="restart" Content="重新开始" Canvas.Left="288" Canvas.Top="669" Foreground="Red" Height="48" Width="107" Click="restart_Click"/>
     </Canvas>
 </Page>

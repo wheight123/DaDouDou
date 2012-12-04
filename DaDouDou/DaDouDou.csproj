@@ -106,6 +106,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Game.cs" />
     <Compile Include="GamePanel.xaml.cs">
       <DependentUpon>GamePanel.xaml</DependentUpon>
     </Compile>
@@ -121,6 +122,7 @@
     <None Include="DaDouDou_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\background\background1.jpg" />
     <Content Include="Assets\background\bg1.png" />
     <Content Include="Assets\background\bg2.png" />
     <Content Include="Assets\background\bg3.png" />
