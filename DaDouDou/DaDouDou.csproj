@@ -135,6 +135,9 @@
     <Content Include="Assets\game_page\bean\bean7.png" />
     <Content Include="Assets\game_page\bean\bean8.png" />
     <Content Include="Assets\game_page\bean\bean9.png" />
+    <Content Include="Assets\game_page\block\gray1.png" />
+    <Content Include="Assets\game_page\block\gray2.png" />
+    <Content Include="Assets\game_page\block\gray3.png" />
     <Content Include="Assets\game_page\number\num0.png" />
     <Content Include="Assets\game_page\number\num1.png" />
     <Content Include="Assets\game_page\number\num2.png" />

@@ -37,9 +37,17 @@ namespace DaDouDou
         /// 属性通常用于配置页。</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
+            // code add image view
+            Image image = new Image();
+            //BitmapImage bitmapImage = new BitmapImage(new Uri("C:\\Users\\wheight123\\Documents\\Visual Studio 2012\\Projects\\DaDouDou\\DaDouDou\\Assets\\game_page\\bean\\bean10.png", UriKind.Absolute));
+            image.Source = bean1.Source;
+            Thickness myThickness = new Thickness(200, 200, 0, 0);
+            image.Margin = myThickness;
+            gameCanvas.Children.Add(image);
         }
 
-        private void BackHome_Click(object sender, RoutedEventArgs e)
+        private void backHome_Click_1(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
