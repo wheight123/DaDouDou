@@ -33,6 +33,8 @@ namespace DaDouDou
         
         private double gamePanelStartPointX;
         private double gamePanleStartPointY;
+
+        private Image[,] gamePanelBeanMatrix;
         public GamePanel()
         {
             this.InitializeComponent();
@@ -50,8 +52,8 @@ namespace DaDouDou
             initGamePanelStartPoint();
             // initialize game panel background
             initGamePanelBackground();
-            // initialzie game panel
-            initGamePanel();
+            // initialzie game panel beans
+            initGamePanelBeans();
         }
 
         // initialize game panel start point x,y coordinate
@@ -65,6 +67,7 @@ namespace DaDouDou
         // initialize game panel background
         private void initGamePanelBackground()
         {
+            gamePanelBeanMatrix = new Image[ROW_AMOUNT, COLUM_AMOUNT];
             for (int i = 0; i < ROW_AMOUNT; i++)
             {
                 double y = gamePanleStartPointY + i * BLOCK_HEIGHT;
@@ -129,8 +132,8 @@ namespace DaDouDou
             }
         }
 
-        // initialize game panel
-        private void initGamePanel()
+        // initialize game panel beans
+        private void initGamePanelBeans()
         {
             int[,] gameZoneMatrix = game.getGameZoneMatrix();
             for (int i = 0; i < ROW_AMOUNT; i++)
@@ -139,14 +142,16 @@ namespace DaDouDou
                 for (int j = 0; j < COLUM_AMOUNT; j++)
                 {
                     int type = gameZoneMatrix[i, j];
-                    if (type> 0 && type <= BLOCK_TYPE)
+                    if (type != 0)
                     {
                         Image image = new Image();
+                        image.Name = "beanImage_" + i + "_" + j;
                         double x = gamePanelStartPointX + j * BLOCK_WIDTH;
                         Thickness myThickness = new Thickness(x, y, 0, 0);
                         image.Margin = myThickness;
                         setBeanImageSource(image, type);
                         gameCanvas.Children.Add(image);
+                        gamePanelBeanMatrix[i, j] = image;
                     }
                 }
             }
@@ -185,8 +190,6 @@ namespace DaDouDou
                 case 10:
                     image.Source = bean10.Source;
                     break;
-                default:
-                    break;
             }
         }
         
@@ -196,11 +199,33 @@ namespace DaDouDou
             this.Frame.Navigate(typeof(MainPage));
         }
 
+        // restart click
         private void restart_Click(object sender, RoutedEventArgs e)
         {
+            // clear game panel beans
+            clearGamePanelBeans();
+            // game resetart, reset game information
             game.restart();
-            //initGamePanelBackground();
-            initGamePanel();
+            // initialize game panel beans
+            initGamePanelBeans();
+        }
+
+        // clear game panel beans
+        private void clearGamePanelBeans()
+        {
+            int[,] gameZoneMatrix = game.getGameZoneMatrix();
+            for (int i = 0; i < ROW_AMOUNT; i++)
+            {
+                for (int j = 0; j < COLUM_AMOUNT; j++)
+                {
+                    int type = gameZoneMatrix[i, j];
+                    if (type != 0)
+                    {
+                        Image image = gamePanelBeanMatrix[i, j];
+                        gameCanvas.Children.Remove(image);
+                    }
+                }
+            }
         }
     }
 }
