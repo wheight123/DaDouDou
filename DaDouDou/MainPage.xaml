@@ -12,11 +12,10 @@
      -->
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="Assets/background/background1.jpg" />
+            <ImageBrush ImageSource="Assets/background/bg3.png" />
         </Grid.Background>
-        <Button Name="StartGame" Content="开始游戏" HorizontalAlignment="Center" VerticalAlignment="Center" Click="StartGame_Click"/>
-        <Image HorizontalAlignment="Center" Height="181" Margin="0,110,0,0" VerticalAlignment="Top" Width="387" Source="Assets/main_page/main_page_logo.png"/>
-        <Image HorizontalAlignment="Center" Height="208" Margin="0,460,0,0" VerticalAlignment="Top" Width="257" Source="Assets/main_page/main_page_rule.png"/>
-        
+        <Image HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" Height="480" Width="800" Source="Assets/main_page/main_page_logo.png"/>
+        <Image Name="start_game" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,100,0,0" Height="100" Width="337" Source="Assets/main_page/start_game.png"
+               Canvas.ZIndex="1" Tapped="start_game_Tapped_1"/>
     </Grid>
 </Page>

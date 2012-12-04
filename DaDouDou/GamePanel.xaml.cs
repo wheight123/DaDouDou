@@ -43,24 +43,5 @@ namespace DaDouDou
         {
             this.Frame.Navigate(typeof(MainPage));
         }
-
-        private void Image_PointerEntered_1(object sender, PointerRoutedEventArgs e)
-        {
-            Image image = (Image)sender;
-            image.Source = purple.Source;
-        }
-
-        private void Image_PointerExited_1(object sender, PointerRoutedEventArgs e)
-        {
-            Image image = (Image)sender;
-            image.Source = greenImage;
-        }
-
-        private void green_Tapped_1(object sender, TappedRoutedEventArgs e)
-        {
-            Image image = (Image)sender;
-            image.Source = red.Source;
-        }
-
     }
 }

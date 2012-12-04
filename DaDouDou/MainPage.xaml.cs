@@ -35,9 +35,9 @@ namespace DaDouDou
         {
         }
 
-        private void StartGame_Click(object sender, RoutedEventArgs e)
+        private void start_game_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(GamePanel));
+             this.Frame.Navigate(typeof(GamePanel));
         }
     }
 }
