@@ -35,6 +35,11 @@ namespace DaDouDou
         private double gamePanleStartPointY;
 
         private Image[,] gamePanelBeanMatrix;
+        private Image[,] gamePanelBackgroundMatrix;
+
+        private DispatcherTimer showPathTimer;
+        private Point showPathPoint;
+        private List<Point> showPathPointList;
         public GamePanel()
         {
             this.InitializeComponent();
@@ -67,7 +72,7 @@ namespace DaDouDou
         // initialize game panel background
         private void initGamePanelBackground()
         {
-            gamePanelBeanMatrix = new Image[ROW_AMOUNT, COLUM_AMOUNT];
+            gamePanelBackgroundMatrix = new Image[ROW_AMOUNT, COLUM_AMOUNT];
             for (int i = 0; i < ROW_AMOUNT; i++)
             {
                 double y = gamePanleStartPointY + i * BLOCK_HEIGHT;
@@ -84,13 +89,14 @@ namespace DaDouDou
                     image.PointerExited += bgImage_PointerExited;
                     image.Tapped += bgImage_Tapped;
                     gameCanvas.Children.Add(image);
+
+                    gamePanelBackgroundMatrix[i, j] = image;
                 }
             }
         }
         // bgImage block be tapped
         private void bgImage_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            result.Text = "";
             Image image = (Image)sender;
             String name = image.Name;
             String[] array = name.Split(new Char[] { '_' });
@@ -99,15 +105,12 @@ namespace DaDouDou
             List<Point> resultPointList = game.findPointList(i, j);
             if (resultPointList.Count > 0)
             {
-                foreach (Point point in resultPointList)
-                {
-                    result.Text = result.Text + "(" + point.X + "," + point.Y + ");";
-                }
                 clearBeans(resultPointList);
+                showBeanPairPath(i, j, resultPointList);
             }
             else
             {
-                result.Text = "not found";
+                game.decreaseRemainTime();
             }
         }
         private void clearBeans(List<Point> pointList)
@@ -125,6 +128,141 @@ namespace DaDouDou
                 gameCanvas.Children.Remove(image);
             }
         }
+        private void showBeanPairPath(int x, int y, List<Point> pointList)
+        {
+            showPathTimer = new DispatcherTimer();
+            showPathTimer.Interval = TimeSpan.FromSeconds(0.2);
+            showPathTimer.Tick += showPathTimer_Tick;
+            showPathTimer.Start();
+            Point startPoint = new Point(x, y);
+            showPathPoint = startPoint;
+            showPathPointList = pointList;
+            foreach (Point endPoint in pointList)
+            {
+                showPath(startPoint, endPoint);
+            }
+            
+        }
+        private void showPath(Point point1, Point point2)
+        {
+            int x1 = (int)point1.X;
+            int y1 = (int)point1.Y;
+            int x2 = (int)point2.X;
+            int y2 = (int)point2.Y;
+            int i, j;
+            if (x1 == x2)
+            {
+                int endJ;
+                i = x1;
+                if (y1 > y2)
+                {
+                    j = y2 + 1;
+                    endJ = y1;
+                }
+                else
+                {
+                    j = y1 + 1;
+                    endJ = y2;
+                }
+                for (; j < endJ; j++)
+                {
+                    Image image = gamePanelBackgroundMatrix[i, j];
+                    gameCanvas.Children.Remove(image);
+                    image.Source = pathPoint.Source;
+                    gameCanvas.Children.Add(image);
+                    gamePanelBackgroundMatrix[i, j] = image;
+                }
+            }
+            else
+            {
+                int endI;
+                j = y1;
+                if (x1 > x2)
+                {
+                    i = x2 + 1;
+                    endI = x1;
+                }
+                else
+                {
+                    i = x1 + 1;
+                    endI = x2;
+                }
+                for (; i < endI; i++)
+                {
+                    Image image = gamePanelBackgroundMatrix[i, j];
+                    gameCanvas.Children.Remove(image);
+                    image.Source = pathPoint.Source;
+                    gameCanvas.Children.Add(image);
+                    gamePanelBackgroundMatrix[i, j] = image;
+                }
+            }
+        }
+        private void showPathTimer_Tick(object sender, object e)
+        {
+            eraseBeanPairPath(showPathPoint, showPathPointList);
+        }
+        private void eraseBeanPairPath(Point startPoint, List<Point> pointList)
+        {
+            foreach (Point endPoint in pointList)
+            {
+                erasePath(startPoint, endPoint);
+            }
+        }
+        private void erasePath(Point point1, Point point2)
+        {
+            int x1 = (int)point1.X;
+            int y1 = (int)point1.Y;
+            int x2 = (int)point2.X;
+            int y2 = (int)point2.Y;
+            int i, j;
+            if (x1 == x2)
+            {
+                int endJ;
+                i = x1;
+                if (y1 > y2)
+                {
+                    j = y2 + 1;
+                    endJ = y1;
+                }
+                else
+                {
+                    j = y1 + 1;
+                    endJ = y2;
+                }
+                for (; j < endJ; j++)
+                {
+                    Image image = gamePanelBackgroundMatrix[i, j];
+                    gameCanvas.Children.Remove(image);
+                    setBackgroundImageSource(image, i, j);
+                    gameCanvas.Children.Add(image);
+                    gamePanelBackgroundMatrix[i, j] = image;
+                }
+            }
+            else
+            {
+                int endI;
+                j = y1;
+                if (x1 > x2)
+                {
+                    i = x2 + 1;
+                    endI = x1;
+                }
+                else
+                {
+                    i = x1 + 1;
+                    endI = x2;
+                }
+                for (; i < endI; i++)
+                {
+                    Image image = gamePanelBackgroundMatrix[i, j];
+                    gameCanvas.Children.Remove(image);
+                    setBackgroundImageSource(image, i, j);
+                    gameCanvas.Children.Add(image);
+                    gamePanelBackgroundMatrix[i, j] = image;
+                }
+            }
+        }
+
         // point move across bgImage block
         private void bgImage_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
@@ -167,6 +305,7 @@ namespace DaDouDou
         // initialize game panel beans
         private void initGamePanelBeans()
         {
+            gamePanelBeanMatrix = new Image[ROW_AMOUNT, COLUM_AMOUNT];
             int[,] gameZoneMatrix = game.getGameZoneMatrix();
             for (int i = 0; i < ROW_AMOUNT; i++)
             {

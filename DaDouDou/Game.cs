@@ -277,6 +277,7 @@ namespace DaDouDou
             remainTime -= 10;
         }
 
+        // clear beans value in game zone matrix
         public void clearBeansValue(List<Point> pointList)
         {
             foreach (Point point in pointList)
