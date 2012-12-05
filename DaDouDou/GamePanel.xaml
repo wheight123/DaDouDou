@@ -55,6 +55,6 @@
         <!-- user control -->
         <Button Name="backHome" Content="返回首页" Canvas.Left="420" Canvas.Top="650" Foreground="Black" Height="50" Width="100" Click="backHome_Click_1" Background="YellowGreen"/>
         <Button Name="restart" Content="重新开始" Canvas.Left="300" Canvas.Top="650" Foreground="Black" Height="50" Width="100" Click="restart_Click" Background="YellowGreen"/>
-        <Slider Canvas.Left="217" Canvas.Top="32" Width="491"/>
+        <Slider Name="timeSlider" Width="450" Foreground="Yellow"/>
     </Canvas>
 </Page>

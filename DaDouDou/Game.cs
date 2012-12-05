@@ -271,10 +271,16 @@ namespace DaDouDou
             }
         }
 
-        // decrease remain time
-        public void decreaseRemainTime()
+        // decrease remain time abnormally
+        public void decreaseRemainTimeAbnormal()
         {
             remainTime -= 10;
+        }
+
+        // decrease remain time normally
+        public void decreaseRemainTimeNormal()
+        {
+            remainTime -= 1;
         }
 
         // clear beans value in game zone matrix
@@ -299,6 +305,17 @@ namespace DaDouDou
             score += pointList.Count;
         }
 
+        public Boolean isGameOver()
+        {
+            if (remainTime == 0 || score == beanAmount)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         // service functions ending //
         //*******************************************************************//
     }

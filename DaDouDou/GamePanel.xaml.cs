@@ -32,11 +32,13 @@ namespace DaDouDou
         private const int BEAN_AMOUNT = 200;
         
         private double gamePanelStartPointX;
-        private double gamePanleStartPointY;
+        private double gamePanelStartPointY;
 
         private Image[,] gamePanelBeanMatrix;
         private Image[,] gamePanelBackgroundMatrix;
         private Image[] gameScoreArray;
+
+        private DispatcherTimer timeSliderTimer;
 
         private DispatcherTimer showPathTimer;
         private Point showPathPoint;
@@ -62,6 +64,8 @@ namespace DaDouDou
             initGamePanelBeans();
             // initialize game score
             initGameScore();
+            // initialize game time
+            initGameTime();
         }
 
         //*******************************************************************//
@@ -72,7 +76,7 @@ namespace DaDouDou
         {
             CoreWindow cw = CoreWindow.GetForCurrentThread();
             gamePanelStartPointX = (cw.Bounds.Width - BLOCK_WIDTH * COLUM_AMOUNT) / 2;
-            gamePanleStartPointY = (cw.Bounds.Height - BLOCK_HEIGHT * ROW_AMOUNT) / 2;
+            gamePanelStartPointY = (cw.Bounds.Height - BLOCK_HEIGHT * ROW_AMOUNT) / 2;
         }
 
         // initialize game panel background
@@ -81,7 +85,7 @@ namespace DaDouDou
             gamePanelBackgroundMatrix = new Image[ROW_AMOUNT, COLUM_AMOUNT];
             for (int i = 0; i < ROW_AMOUNT; i++)
             {
-                double y = gamePanleStartPointY + i * BLOCK_HEIGHT;
+                double y = gamePanelStartPointY + i * BLOCK_HEIGHT;
                 for (int j = 0; j < COLUM_AMOUNT; j++)
                 {
                     Image image = new Image();
@@ -107,7 +111,7 @@ namespace DaDouDou
             int[,] gameZoneMatrix = game.getGameZoneMatrix();
             for (int i = 0; i < ROW_AMOUNT; i++)
             {
-                double y = gamePanleStartPointY + i * BLOCK_HEIGHT;
+                double y = gamePanelStartPointY + i * BLOCK_HEIGHT;
                 for (int j = 0; j < COLUM_AMOUNT; j++)
                 {
                     int type = gameZoneMatrix[i, j];
@@ -131,8 +135,8 @@ namespace DaDouDou
         {
             int imageWith = 19;
             int imageHeight = 30;
-            int startX = (int)gamePanelStartPointX + BLOCK_WIDTH * COLUM_AMOUNT - imageWith * 4;
-            int startY = (int)gamePanleStartPointY - imageHeight * 2;
+            int startX = (int)gamePanelStartPointX + BLOCK_WIDTH * COLUM_AMOUNT - imageWith * 5;
+            int startY = (int)gamePanelStartPointY - imageHeight * 2 + 15;
             gameScoreArray = new Image[3];
             for (int i = 0; i < 3; i++)
             {
@@ -146,6 +150,25 @@ namespace DaDouDou
                 gameCanvas.Children.Add(image);
                 gameScoreArray[i] = image;
             }
+        }
+
+        // initialize game time
+        private void initGameTime()
+        {
+            Slider slider = timeSlider;
+            gameCanvas.Children.Remove(slider);
+            int x = (int)gamePanelStartPointX + 20;
+            int y = (int)gamePanelStartPointY - 50;
+            Thickness myThickness = new Thickness(x, y, 0, 0);
+            slider.Margin = myThickness;
+            slider.Maximum = game.getRemainTime();
+            slider.Value = game.getRemainTime();
+            gameCanvas.Children.Add(slider);
+
+            timeSliderTimer = new DispatcherTimer();
+            timeSliderTimer.Interval = TimeSpan.FromSeconds(0.5);
+            timeSliderTimer.Tick += timeSliderTimer_Tick;
+            timeSliderTimer.Start();
         }
 
         // initialize related function ending //
@@ -172,8 +195,9 @@ namespace DaDouDou
             }
             else
             {
-                game.decreaseRemainTime();
+                doBeansNotFoundUpdate();
             }
+
         }
 
         // point move across bgImage block
@@ -223,7 +247,10 @@ namespace DaDouDou
             game.restart();
             // initialize game panel beans
             initGamePanelBeans();
+            // update score
             updateScore();
+            // update remain time
+            updateGameTime();
         }
 
         // normal controls event response functions ending //
@@ -231,13 +258,21 @@ namespace DaDouDou
 
 
         //*******************************************************************//
-        
+
+        // timeSlider timer tick callback function
+        void timeSliderTimer_Tick(object sender, object e)
+        {
+            game.decreaseRemainTimeNormal();
+            updateGameTime();
+        }
+
         // do find beans update
         private void doFindBeansUpdate(Point startPoint, List<Point> pointList)
         {
             game.updateGameInfo(pointList);
             showBeanPairPath(startPoint, pointList);
             updateScore();
+            updateGameTime();
         }
 
         // show bean pair path according to start point(x, y) and point list
@@ -433,6 +468,16 @@ namespace DaDouDou
             }
         }
 
+        private void doBeansNotFoundUpdate()
+        {
+            game.decreaseRemainTimeAbnormal();
+            updateGameTime();
+        }
+
+        private void updateGameTime()
+        {
+            timeSlider.Value = game.getRemainTime();
+        }
         //*******************************************************************//
 
 
