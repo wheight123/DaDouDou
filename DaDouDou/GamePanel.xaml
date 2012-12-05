@@ -25,7 +25,7 @@
     -->
     <Canvas Name="gameCanvas">
         <Canvas.Background>
-            <ImageBrush ImageSource="Assets/background/bg2.png" />
+            <ImageBrush ImageSource="Assets/background/bg3.png" />
         </Canvas.Background>
         <!-- define image as dynamic images' srouce -->
         <Image Name="bean1" Height="32" Width="32" Canvas.Left="0" Canvas.Top="0"  Source="Assets/game_page/bean/bean1.png" Visibility="Collapsed"/>

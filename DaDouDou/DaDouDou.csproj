@@ -152,6 +152,9 @@
     <Content Include="Assets\game_page\number\num9.png" />
     <Content Include="Assets\game_page\path_point.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\logo\big_logo.png" />
+    <Content Include="Assets\logo\small_logo.png" />
+    <Content Include="Assets\logo\store_logo.png" />
     <Content Include="Assets\main_page\main_page_logo.png" />
     <Content Include="Assets\main_page\main_page_rule.png" />
     <Content Include="Assets\main_page\start_game.png" />

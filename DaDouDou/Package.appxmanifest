@@ -1,42 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-
-  <Identity Name="90fa1623-a7dc-4b7b-9498-ca302b291830"
-            Publisher="CN=wheight123"
-            Version="1.0.0.0" />
-
+  <Identity Name="90fa1623-a7dc-4b7b-9498-ca302b291830" Publisher="CN=wheight123" Version="1.0.0.0" />
   <Properties>
     <DisplayName>DaDouDou</DisplayName>
     <PublisherDisplayName>wheight123</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\logo\store_logo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
     <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
   </Prerequisites>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="DaDouDou.App">
-        <VisualElements
-            DisplayName="DaDouDou"
-            Logo="Assets\Logo.png"
-            SmallLogo="Assets\SmallLogo.png"
-            Description="DaDouDou"
-            ForegroundText="light"
-            BackgroundColor="#464646">
-            <DefaultTile ShowName="allLogos" />
-            <SplashScreen Image="Assets\SplashScreen.png" />
-        </VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DaDouDou.App">
+      <VisualElements DisplayName="DaDouDou" Logo="Assets\logo\big_logo.png" SmallLogo="Assets\logo\small_logo.png" Description="DaDouDou" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="Assets\SplashScreen.png" />
+      </VisualElements>
     </Application>
   </Applications>
-  <Capabilities>
-    <Capability Name="internetClient" />
-  </Capabilities>
 </Package>
