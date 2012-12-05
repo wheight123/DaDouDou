@@ -116,7 +116,7 @@ namespace DaDouDou
         private void clearBeans(List<Point> pointList)
         {
             game.clearBeansValue(pointList);
-            clearBeanInGamePanel(pointList);
+            //clearBeanInGamePanel(pointList);
         }
         private void clearBeanInGamePanel(List<Point> pointList)
         {
@@ -200,6 +200,8 @@ namespace DaDouDou
         private void showPathTimer_Tick(object sender, object e)
         {
             eraseBeanPairPath(showPathPoint, showPathPointList);
+            clearBeanInGamePanel(showPathPointList);
+            showPathTimer.Stop();
         }
         private void eraseBeanPairPath(Point startPoint, List<Point> pointList)
         {
