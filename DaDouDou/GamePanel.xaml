@@ -53,8 +53,11 @@
         <Image Name="number8" Height="32" Width="19" Canvas.Left="97" Canvas.Top="271"  Source="Assets/game_page/number/num8.png" Visibility="Collapsed"/>
         <Image Name="number9" Height="32" Width="19" Canvas.Left="97" Canvas.Top="301"  Source="Assets/game_page/number/num9.png" Visibility="Collapsed"/>
         <!-- user control -->
-        <Button Name="backHome" Content="返回首页" Canvas.Left="420" Canvas.Top="650" Foreground="Black" Height="50" Width="100" Click="backHome_Click_1" Background="YellowGreen"/>
-        <Button Name="restart" Content="重新开始" Canvas.Left="300" Canvas.Top="650" Foreground="Black" Height="50" Width="100" Click="restart_Click" Background="YellowGreen"/>
+        <Image Name="image_restart" Height="50" Canvas.Left="300" Canvas.Top="650" Width="100" Source="Assets/game_page/restart.png"
+               Tapped="image_restart_Tapped_1"/>
+        <Image Name="image_back" Height="50" Canvas.Left="420" Canvas.Top="650" Width="100" Source="Assets/game_page/back.png"
+               Tapped="image_back_Tapped_1"/>
         <Slider Name="timeSlider" Width="450" Foreground="Yellow"/>
+        
     </Canvas>
 </Page>

@@ -195,9 +195,11 @@ namespace DaDouDou
             }
             else
             {
+                // do beans not found update
                 doBeansNotFoundUpdate();
             }
-
+            // check whether game is over
+            checkGameStatus();
         }
 
         // point move across bgImage block
@@ -232,25 +234,29 @@ namespace DaDouDou
         //*******************************************************************//
         // normal controls event response functions beginning //
 
-        // backHome click function
-        private void backHome_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }
-
-        // restart click function
-        private void restart_Click(object sender, RoutedEventArgs e)
+        // restart game image tapped event response function
+        private void image_restart_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
             // clear game panel beans
             clearGamePanelBeans();
             // game resetart, reset game information
             game.restart();
+            // update game panel background
+            updateGamePanelBackground();
             // initialize game panel beans
             initGamePanelBeans();
             // update score
             updateScore();
             // update remain time
             updateGameTime();
+            // start timeSlider timer
+            timeSliderTimer.Start();
+        }
+
+        // back home page image tapped event response function
+        private void image_back_Tapped_1(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
 
         // normal controls event response functions ending //
@@ -262,8 +268,12 @@ namespace DaDouDou
         // timeSlider timer tick callback function
         void timeSliderTimer_Tick(object sender, object e)
         {
+            // decrease game remain time normally
             game.decreaseRemainTimeNormal();
+            // update game time
             updateGameTime();
+            // check game status
+            checkGameStatus();
         }
 
         // do find beans update
@@ -467,16 +477,79 @@ namespace DaDouDou
                 }
             }
         }
-
+         
+        // do beans not found update
         private void doBeansNotFoundUpdate()
         {
             game.decreaseRemainTimeAbnormal();
             updateGameTime();
         }
 
+        // update game time
         private void updateGameTime()
         {
             timeSlider.Value = game.getRemainTime();
+        }
+
+        // check game status
+        private void checkGameStatus()
+        {
+            if (game.isGameOver())
+            {
+                clearGamePanelBackground();
+                updateGamePanelBeans();
+                timeSliderTimer.Stop();
+            }
+        }
+
+        // clear game panel background
+        private void clearGamePanelBackground()
+        {
+            for (int i = 0; i < ROW_AMOUNT; i++)
+            {
+                for (int j = 0; j < COLUM_AMOUNT; j++)
+                {
+                    Image image = gamePanelBackgroundMatrix[i, j];
+                    gameCanvas.Children.Remove(image);
+                    image.Tapped -= bgImage_Tapped;
+                    gameCanvas.Children.Add(image);
+                    gamePanelBackgroundMatrix[i, j] = image;
+                }
+            }
+        }
+        // update game panel beans
+        private void updateGamePanelBeans()
+        {
+            int[,] gameZoneMatrix = game.getGameZoneMatrix();
+            for (int i = 0; i < ROW_AMOUNT; i++)
+            {
+                for (int j = 0; j < COLUM_AMOUNT; j++)
+                {
+                    int type = gameZoneMatrix[i, j];
+                    if (type != 0)
+                    {
+                        Image image = gamePanelBeanMatrix[i, j];
+                        gameCanvas.Children.Remove(image);
+                        gameCanvas.Children.Add(image);
+                    }
+                }
+            }
+        }
+
+        // update game panel background
+        private void updateGamePanelBackground()
+        {
+            for (int i = 0; i < ROW_AMOUNT; i++)
+            {
+                for (int j = 0; j < COLUM_AMOUNT; j++)
+                {
+                    Image image = gamePanelBackgroundMatrix[i, j];
+                    gameCanvas.Children.Remove(image);
+                    image.Tapped += bgImage_Tapped;
+                    gameCanvas.Children.Add(image);
+                    gamePanelBackgroundMatrix[i, j] = image;
+                }
+            }
         }
         //*******************************************************************//
 

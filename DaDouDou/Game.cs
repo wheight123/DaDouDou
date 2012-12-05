@@ -307,7 +307,7 @@ namespace DaDouDou
 
         public Boolean isGameOver()
         {
-            if (remainTime == 0 || score == beanAmount)
+            if (remainTime <= 0 || score >= beanAmount)
             {
                 return true;
             }
