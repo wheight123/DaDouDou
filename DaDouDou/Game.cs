@@ -287,6 +287,18 @@ namespace DaDouDou
                 gameZoneMatrix[x, y] = 0;
             }
         }
+
+        public void updateGameInfo(List<Point> pointList)
+        {
+            foreach (Point point in pointList)
+            {
+                int x = (int)point.X;
+                int y = (int)point.Y;
+                gameZoneMatrix[x, y] = 0;
+            }
+            score += pointList.Count;
+        }
+
         // service functions ending //
         //*******************************************************************//
     }
