@@ -43,10 +43,10 @@ namespace DaDouDou
         private DispatcherTimer showPathTimer;
         private Point showPathPoint;
         private List<Point> showPathPointList;
+
         public GamePanel()
         {
             this.InitializeComponent();
-            game = new Game(COLUM_AMOUNT, ROW_AMOUNT, BLOCK_TYPE, BEAN_AMOUNT);
         }
 
         /// <summary>
@@ -56,6 +56,8 @@ namespace DaDouDou
         /// 属性通常用于配置页。</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            // initialize game information
+            game = new Game(COLUM_AMOUNT, ROW_AMOUNT, BLOCK_TYPE, BEAN_AMOUNT);
             // initialize game panel start point x,y coordinate
             initGamePanelStartPoint();
             // initialize game panel background
@@ -395,6 +397,7 @@ namespace DaDouDou
                 int y = (int)point.Y;
                 Image image = gamePanelBeanMatrix[x, y];
                 gameCanvas.Children.Remove(image);
+                gamePanelBeanMatrix[x, y] = new Image();
             }
         }
 
@@ -465,17 +468,18 @@ namespace DaDouDou
         // clear game panel beans
         private void clearGamePanelBeans()
         {
-            int[,] gameZoneMatrix = game.getGameZoneMatrix();
+            //int[,] gameZoneMatrix = game.getGameZoneMatrix();
             for (int i = 0; i < ROW_AMOUNT; i++)
             {
                 for (int j = 0; j < COLUM_AMOUNT; j++)
                 {
-                    int type = gameZoneMatrix[i, j];
-                    if (type != 0)
-                    {
+                    //int type = gameZoneMatrix[i, j];
+                    //if (type != 0)
+                    //{
                         Image image = gamePanelBeanMatrix[i, j];
                         gameCanvas.Children.Remove(image);
-                    }
+                        gamePanelBeanMatrix[i, j] = new Image();
+                    //}
                 }
             }
         }
@@ -548,6 +552,7 @@ namespace DaDouDou
                 {
                     Image image = gamePanelBackgroundMatrix[i, j];
                     gameCanvas.Children.Remove(image);
+                    image.Tapped -= bgImage_Tapped;
                     image.Tapped += bgImage_Tapped;
                     gameCanvas.Children.Add(image);
                     gamePanelBackgroundMatrix[i, j] = image;
