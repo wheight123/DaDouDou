@@ -251,6 +251,8 @@ namespace DaDouDou
             updateGameTime();
             // start timeSlider timer
             timeSliderTimer.Start();
+            //
+            txtRemind.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
         // back home page image tapped event response function
@@ -499,6 +501,7 @@ namespace DaDouDou
                 clearGamePanelBackground();
                 updateGamePanelBeans();
                 timeSliderTimer.Stop();
+                txtRemind.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
         }
 

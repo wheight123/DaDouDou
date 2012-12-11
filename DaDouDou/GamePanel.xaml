@@ -58,6 +58,7 @@
         <Image Name="image_back" Height="50" Canvas.Left="420" Canvas.Top="650" Width="100" Source="Assets/game_page/back.png"
                Tapped="image_back_Tapped_1"/>
         <Slider Name="timeSlider" Width="450" Foreground="Yellow"/>
-        
+        <TextBlock Canvas.Left="543" TextWrapping="Wrap" Text="游戏结束" Canvas.Top="656" Height="31" Width="102" 
+            Name="txtRemind" FontSize="25" Foreground="Red" Visibility="Collapsed"/>
     </Canvas>
 </Page>
