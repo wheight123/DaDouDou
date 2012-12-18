@@ -15,6 +15,7 @@
     <PackageCertificateKeyFile>DaDouDou_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <PackageCertificateThumbprint>77C32D35CB18D4064F60DEF9313B5F3DA6D340A9</PackageCertificateThumbprint>
+    <AppxPackageDir>C:\Users\wheight123\Documents\Visual Studio 2012\Projects\DaDouDou\DaDouDou\AppPackages\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -164,7 +165,7 @@
     <Content Include="Assets\main_page\main_page_rule.png" />
     <Content Include="Assets\main_page\start_game.png" />
     <Content Include="Assets\SmallLogo.png" />
-    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\MySplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <None Include="Package.StoreAssociation.xml" />
     <Page Include="GamePanel.xaml">

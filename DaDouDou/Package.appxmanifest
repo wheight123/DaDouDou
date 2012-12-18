@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="18187Xiaosisyh.86373EF11624" Publisher="CN=B9136DFF-DE70-4A20-835F-5E80F15CB87F" Version="1.0.0.0" />
+  <Identity Name="18187Xiaosisyh.86373EF11624" Publisher="CN=B9136DFF-DE70-4A20-835F-5E80F15CB87F" Version="1.0.0.5" />
   <Properties>
     <DisplayName>简易打豆豆</DisplayName>
     <PublisherDisplayName>Xiaosi_syh</PublisherDisplayName>
@@ -17,7 +17,7 @@
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DaDouDou.App">
       <VisualElements DisplayName="简易打豆豆" Logo="Assets\logo\big_logo.png" SmallLogo="Assets\logo\small_logo.png" Description="DaDouDou" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+        <SplashScreen Image="Assets\MySplashScreen.png" />
       </VisualElements>
     </Application>
   </Applications>
